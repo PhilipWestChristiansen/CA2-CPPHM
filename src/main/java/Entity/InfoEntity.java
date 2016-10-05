@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import com.google.gson.annotations.Expose;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class InfoEntity {
     
     @ManyToOne(cascade = 
         CascadeType.PERSIST)
-    private Address address;
+    Address address;
 
     public InfoEntity(String email, List<Phone> phones, Address address) {
         this.email = email;
@@ -73,6 +74,11 @@ public class InfoEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Address getAddress()
+    {
+        return address;
     }
     
     

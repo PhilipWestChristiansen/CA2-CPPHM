@@ -10,6 +10,9 @@ import Entity.CityInfo;
 import Entity.Hobby;
 import Entity.Person;
 import Entity.Phone;
+import Facade.personFacade;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -23,8 +26,13 @@ import javax.persistence.Persistence;
 public class Populate {
 
     public static void main(String[] args) {
-//        cityTest();
+        //cityTest();
         personTest();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
+        personFacade pf = new personFacade(emf);
+        Gson gson = new GsonBuilder().create();
+        String js = gson.toJson(pf.getPerson(1));
+        System.out.println(js);
     }
     static CityInfo ci = new CityInfo("2830", "Virum");
 
@@ -40,7 +48,7 @@ public class Populate {
         em.close();
     }
 
-    public static void personTest() {
+    public static Person personTest() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
         EntityManager em = emf.createEntityManager();
 
@@ -59,6 +67,7 @@ public class Populate {
         em.getTransaction().commit();
 
         em.close();
+        return p;
     }
 
 }

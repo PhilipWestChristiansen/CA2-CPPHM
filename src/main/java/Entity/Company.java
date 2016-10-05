@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import com.google.gson.annotations.Expose;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +19,11 @@ import javax.persistence.Id;
 @Entity
 public class Company extends InfoEntity {
 
-    String name;
-    String description;
-    String cvr;
-    int NumEmployees;
-    double marketValue;
+    @Expose String name;
+    @Expose String description;
+    @Expose String cvr;
+    @Expose int NumEmployees;
+    @Expose double marketValue;
 
     public Company() {
     }

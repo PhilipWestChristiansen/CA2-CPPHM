@@ -1,5 +1,6 @@
 package Entity;
 
+import com.google.gson.annotations.Expose;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

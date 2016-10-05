@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import com.google.gson.annotations.Expose;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

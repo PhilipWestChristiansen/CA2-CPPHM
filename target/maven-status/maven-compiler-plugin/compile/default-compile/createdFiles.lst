@@ -5,6 +5,7 @@ Entity/Hobby.class
 Entity/Person_.class
 Test/Tester.class
 Entity/Phone_.class
+Mapper/PersonMapper.class
 Entity/Hobby_.class
 Entity/Phone.class
 Entity/Address_.class
@@ -12,7 +13,6 @@ Entity/InfoEntity.class
 Entity/Person.class
 Entity/Company_.class
 Facade/personFacade.class
-Rest/GenericResource.class
 Entity/InfoEntity_.class
 Rest/RESTPerson.class
 Rest/ApplicationConfig.class

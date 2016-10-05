@@ -4,18 +4,27 @@ import Entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class personFacade {
 
     EntityManagerFactory emf;
+    
 
+    public static void main(String[] args)
+    {
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
+        personFacade pf = new personFacade(emf);
+        
+        System.out.println("Tester " + pf.getPerson(1));
+    }
     public personFacade(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
     public Person getPerson(int id) {
         EntityManager em = emf.createEntityManager();
-
         Person p = null;
 
         try {

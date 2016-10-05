@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import com.google.gson.annotations.Expose;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,8 +22,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Person extends InfoEntity {
     
-    String firstName;
-    String lastName;
+    
+    @Expose String firstName;
+    @Expose String lastName;
     
     @ManyToMany(cascade = 
         CascadeType.PERSIST)
@@ -46,10 +48,7 @@ public class Person extends InfoEntity {
         this.hobbies = hobbies;
     }
     
-    @Override
-    public String toString() {
-        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + '}';
-    }
+    
     
     public int getId() {
         return id;

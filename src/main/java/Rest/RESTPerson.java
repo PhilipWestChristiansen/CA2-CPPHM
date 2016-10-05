@@ -8,10 +8,14 @@ package Rest;
 import Entity.Hobby;
 import Entity.Person;
 import Facade.personFacade;
+import Mapper.PersonMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -30,9 +34,10 @@ import javax.ws.rs.core.MediaType;
 @Path("person")
 public class RESTPerson
 {
-    EntityManagerFactory emf;
+
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
     personFacade pf = new personFacade(emf);
-    
+
     @Context
     private UriInfo context;
 
@@ -43,19 +48,21 @@ public class RESTPerson
     {
     }
 
-    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("complete/{id}")
-    public String getPerson(@PathParam("id") int id ) 
+    public String getPerson(@PathParam("id") int id)
     {
         
         Person p = pf.getPerson(id);
+        PersonMapper map = new PersonMapper(p);
         
-        return  new Gson().toJson(p);
         
+        
+        
+        return new Gson().toJson(map);
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("complete")
@@ -63,23 +70,31 @@ public class RESTPerson
     {
         
         List<Person> list = pf.getPersons();
-        return  new Gson().toJson(list);
+        for (int i = 1; i < list.size()+1; i++)
+        {
+          Person p = pf.getPerson(i);
+          PersonMapper map = new PersonMapper(p);
+          return new Gson().toJson(map);
+        }
         
+        return  "mistake";
+
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("complete")
+    @Path("contract")
     public String getPersonContact()
     {
-        
+
         List<Person> list = pf.getPersons();
-        return  new Gson().toJson(list);
-        
+        return new Gson().toJson(list);
+
     }
 
     /**
      * PUT method for updating or creating an instance of GenericResource
+     *
      * @param content representation for the resource
      */
     @PUT

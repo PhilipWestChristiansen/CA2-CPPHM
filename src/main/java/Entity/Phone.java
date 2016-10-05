@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import com.google.gson.annotations.Expose;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,9 +20,9 @@ import javax.persistence.Id;
 public class Phone {
     
     @Id    
-    int number;
+    @Expose int number;
     
-    String description;
+    @Expose String description;
 
     public Phone() {
     }
