@@ -21,34 +21,18 @@ import javax.persistence.OneToMany;
 @Entity
 public class Person extends InfoEntity {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    
     String firstName;
     String lastName;
     
-//    @ManyToMany(cascade = 
-//        {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "persons")
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = 
+        CascadeType.PERSIST)
     List<Hobby> hobbies;
 
     public Person() {
     }
-    
-    public Person(String firstName, String lastName){
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
-    public Person(String firstName, String lastName, List<Hobby> hobbies) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.hobbies = hobbies;
-    }
-
-    public Person(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones) {
-        super(email, phones);
+    public Person(String firstName, String lastName, List<Hobby> hobbies, String email, List<Phone> phones, Address address) {
+        super(email, phones, address);
         this.firstName = firstName;
         this.lastName = lastName;
         this.hobbies = hobbies;

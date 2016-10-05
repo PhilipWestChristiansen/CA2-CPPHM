@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -31,11 +32,17 @@ public class InfoEntity {
     
     @OneToMany(cascade = CascadeType.ALL)
     List <Phone> phones;
+    
+    @ManyToOne(cascade = 
+        CascadeType.PERSIST)
+    private Address address;
 
-    public InfoEntity(String email, List<Phone> phones) {
+    public InfoEntity(String email, List<Phone> phones, Address address) {
         this.email = email;
         this.phones = phones;
+        this.address = address;
     }
+    
     
     public InfoEntity() {
     }

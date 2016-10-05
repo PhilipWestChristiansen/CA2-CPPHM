@@ -20,47 +20,17 @@ import javax.persistence.OneToMany;
 public class CityInfo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-
-    String zipcode;
+    String zip;
     String city;
-    
-    @OneToMany
-    List<Address> addresses;
 
     public CityInfo() {
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-    
     public CityInfo(String zipcode, String city) {
-        this.zipcode = zipcode;
+        this.zip = zipcode;
         this.city = city;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
+    
     public String getCity() {
         return city;
     }
@@ -68,6 +38,14 @@ public class CityInfo {
     public void setCity(String city) {
         this.city = city;
     }
-    
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
     
 }

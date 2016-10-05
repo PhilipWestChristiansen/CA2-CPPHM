@@ -18,11 +18,9 @@ import javax.persistence.Id;
 @Entity
 public class Phone {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)        
-    int id;
-    
+    @Id    
     int number;
+    
     String description;
 
     public Phone() {
@@ -31,14 +29,6 @@ public class Phone {
     public Phone(int number, String description) {
         this.number = number;
         this.description = description;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getNumber() {

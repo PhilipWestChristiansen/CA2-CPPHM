@@ -6,10 +6,12 @@
 package Entity;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -26,25 +28,19 @@ public class Address {
     String street;
     String additionalInfo;
     
-    @OneToMany
-    List<InfoEntity> infoentities;
-
+    @ManyToOne(cascade = 
+        CascadeType.PERSIST)
+    CityInfo cityInfo;
+    
     public Address() {
     }
-    
-    public Address(String street, String additionalInfo) {
+
+    public Address(String street, String additionalInfo, CityInfo cityInfo) {
         this.street = street;
         this.additionalInfo = additionalInfo;
+        this.cityInfo = cityInfo;
     }
 
-    public List<InfoEntity> getInfoentities() {
-        return infoentities;
-    }
-
-    public void setInfoentities(List<InfoEntity> infoentities) {
-        this.infoentities = infoentities;
-    }
-    
     public int getId() {
         return id;
     }

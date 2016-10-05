@@ -5,6 +5,7 @@
  */
 package Entity;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +18,6 @@ import javax.persistence.Id;
 @Entity
 public class Company extends InfoEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-
     String name;
     String description;
     String cvr;
@@ -29,17 +26,9 @@ public class Company extends InfoEntity {
 
     public Company() {
     }
-    
-    public Company(String name, String description, String cvr, int NumEmployees, double marketValue) {
-        this.name = name;
-        this.description = description;
-        this.cvr = cvr;
-        this.NumEmployees = NumEmployees;
-        this.marketValue = marketValue;
-    }
 
-    public Company(String name, String description, String cvr, int NumEmployees, double marketValue, int id, String email) {
-        super(email);
+    public Company(String name, String description, String cvr, int NumEmployees, double marketValue, String email, List<Phone> phones, Address address) {
+        super(email, phones, address);
         this.name = name;
         this.description = description;
         this.cvr = cvr;

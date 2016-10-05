@@ -18,11 +18,12 @@ public class Hobby {
 
     String name;
     String description;
-    @ManyToOne
-    private Person person;
     
-//    @ManyToMany(mappedBy = "hobbies", cascade = 
-//        {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "hobbies", cascade = 
+        CascadeType.PERSIST)
+    private List<Person> persons;
+    
+//    @ManyToMany(mappedBy = "hobbies", )
 //    private List<Person> persons;
 
     public Hobby() {
