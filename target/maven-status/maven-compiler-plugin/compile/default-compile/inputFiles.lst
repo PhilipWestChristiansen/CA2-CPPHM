@@ -5,8 +5,9 @@
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Rest/RESTPerson.java
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Test/Populate.java
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Entity/InfoEntity.java
+/Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Entity/Hobby.java
+/Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Rest/GenericResource.java
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Entity/Person.java
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Facade/personFacade.java
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Entity/Company.java
-/Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Entity/Hobby.java
 /Users/hamzalaroussi/NetBeansProjects/CA2Project/src/main/java/Test/Tester.java

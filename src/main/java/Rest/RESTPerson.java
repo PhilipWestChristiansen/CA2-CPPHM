@@ -66,6 +66,17 @@ public class RESTPerson
         return  new Gson().toJson(list);
         
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("complete")
+    public String getPersonContact()
+    {
+        
+        List<Person> list = pf.getPersons();
+        return  new Gson().toJson(list);
+        
+    }
 
     /**
      * PUT method for updating or creating an instance of GenericResource

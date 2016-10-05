@@ -5,6 +5,10 @@
  */
 package Rest;
 
+import Entity.Hobby;
+import Entity.Person;
+import com.google.gson.Gson;
+import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -38,11 +42,16 @@ public class GenericResource
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getXml()
     {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+        ArrayList<Hobby> hobby = new ArrayList<Hobby>();
+        hobby.add(new Hobby("football" , "hey"));
+        hobby.add(new Hobby("basket" , "hey2"));
+        
+        
+        return  "Hey";
+        
     }
 
     /**
