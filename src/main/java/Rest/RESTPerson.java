@@ -68,16 +68,18 @@ public class RESTPerson
     @Path("complete")
     public String getPersons()
     {
-        
+        String jsonString ="";
         List<Person> list = pf.getPersons();
         for (int i = 1; i < list.size()+1; i++)
         {
           Person p = pf.getPerson(i);
           PersonMapper map = new PersonMapper(p);
-          return new Gson().toJson(map);
+          
+         jsonString += new Gson().toJson(map) + "\n";
+          
         }
         
-        return  "mistake";
+        return  jsonString;
 
     }
 
