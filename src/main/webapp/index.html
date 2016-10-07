@@ -15,5 +15,79 @@
         <br>
         <a href="http://localhost:8080/CA2-v2/AddPerson.html">Add a person</a>
         
+        <h1>Documentation</h1> <br>
+
+<h3>Description of REST API, error responses and JSON format</h3> <br>
+<p>
+REST is an architecture style for designing networked applications. This means we can use simple HTTP requests to make calls between machines, in our case between our application and mysql database. RESTful applications use HTTP requests to post, read, and delete data. Thus, REST uses HTTP for all four CRUD (Create/Read/Update/Delete) operations.
+</p>
+
+<p>
+The REST API for this application makes it possible to operate on the database with commands such as create/read/update and delete via the facade. Typing api/person/complete after the url will now because of the REST API return Persons, with all details, as a JSON object, this is done by using the REST API read command. 
+</p>
+
+<p>
+Our JSON is formatted the way it is described in the assignment. 
+{ 
+"firstName": "xxx", 
+"lastName" : "xxx", 
+"email" : "xxx", 
+"phones": [{"number":"xx","description":"xx"},{"number":"xx","description":"xx"},..] 
+"street": "xxxx", 
+"additionalInfo" : "xxxx", 
+"zipcode": "nnnn",
+ "city" : "xxxx" 
+}
+And with our Person Mapper, we are able to easily return more or less data depending on what our client wants available for them. Our current JSON format also makes us able to test whether or not our data is shown correctly. Example could be the list of phones. Since a person can have multiple phone numbers, our JSON formatted so it shows multiple phone numbers and descriptions.
+</p>
+
+Vores hjemmesides adresse /complete
+Så får du personen med det id
+
+<h3>Test strategy & test results</h3> <br>
+
+<h3>Tasks</h3> <br>
+
+<p><b>Philip West Christiansen - 5/5 studypoints</b></p>
+<p>Designing database (Entity Classes)</p>
+<p>Designing person facade</p>
+<p>Documentation</p>
+
+<br>
+<p><b>Casper Juul Lindinger - 5/5 studypoints</b></p>
+<p>Designing database (Entity Classes)</p>
+<p>Designing person facade and city facade</p>
+<p>Documentation</p>
+<p>REST API</p>
+
+<br>
+<p><b>Philip Thygesen - 5/5 studypoints</b></p>
+<p>Designing database (Entity Classes)</p>
+<p>REST API</p>
+<p>JUNIT</p>
+<p>Front-end</p>
+
+<br>
+<p><b>Hamza Laroussi - 5/5 studypoints</b></p>
+<p>Designing database (Entity Classes)</p>
+<p>Person Mapper</p>
+<p>REST API</p>
+
+<br>
+<p><b>Mathias Jacobsen - 5/5 studypoints</b></p>
+<p>Designing database (Entity Classes)</p>
+<p>REST API</p>
+<p>Front-end</p>
+<p>JUNIT</p>
+
+<br>
+<p><b>Mads Ibsen - 0/5 studypoints</b></p>
+
+<h3>Strategy chosen to implement inheritance and why this strategy was chosen</h3> <br>
+<p>Joined inheritance is the most logical inheritance solution because it mirrors the object model in the data model. In joined inheritance a table is defined for each class in the inheritance hierarchy to store only the local attributes of that class. Each table in the hierarchy must also store the object's id (primary key), which is only defined in the root class.
+This way we do not have a table with all attributes of the other classes, but 3 different tables (Person, Company, InfoEntity) with their own local attributes as described earlier. 
+</p>
+
+        
     </body>
 </html>
