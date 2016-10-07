@@ -35,73 +35,79 @@ import javax.ws.rs.core.MediaType;
 public class RESTPerson
 {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
-    personFacade pf = new personFacade(emf);
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
+  personFacade pf = new personFacade(emf);
 
-    @Context
-    private UriInfo context;
+  @Context
+  private UriInfo context;
 
-    /**
-     * Creates a new instance of GenericResource
-     */
-    public RESTPerson()
+  /**
+   * Creates a new instance of GenericResource
+   */
+  public RESTPerson()
+  {
+  }
+
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Path("complete/{id}")
+  public String getPerson(@PathParam("id") int id)
+  {
+
+    Person p = pf.getPerson(id);
+    PersonMapper map = new PersonMapper(p);
+
+    return new Gson().toJson(map);
+  }
+
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Path("complete")
+  public String getPersons()
+  {
+    String jsonString = "[";
+    List<Person> list = pf.getPersons();
+    
+    for (int i = 1; i < list.size() + 1; i++)
     {
-    }
+      Person p = pf.getPerson(i);
+      PersonMapper map = new PersonMapper(p);
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("complete/{id}")
-    public String getPerson(@PathParam("id") int id)
-    {
-        
-        Person p = pf.getPerson(id);
-        PersonMapper map = new PersonMapper(p);
-        
-        
-        
-        
-        return new Gson().toJson(map);
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("complete")
-    public String getPersons()
-    {
-        String jsonString ="";
-        List<Person> list = pf.getPersons();
-        for (int i = 1; i < list.size()+1; i++)
-        {
-          Person p = pf.getPerson(i);
-          PersonMapper map = new PersonMapper(p);
-          
-         jsonString += new Gson().toJson(map) + "\n";
-          
-        }
-        
-        return  jsonString;
-
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("contract")
-    public String getPersonContact()
-    {
-
-        List<Person> list = pf.getPersons();
-        return new Gson().toJson(list);
+      jsonString += new Gson().toJson(map);
+      
+      if(i != list.size())
+      {
+        jsonString += ",";
+      }
+      
+      jsonString += "\n";
 
     }
+    
+    jsonString += "]";
 
-    /**
-     * PUT method for updating or creating an instance of GenericResource
-     *
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content)
-    {
-    }
+    return jsonString;
+  }
+
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Path("contract")
+  public String getPersonContact()
+  {
+
+    List<Person> list = pf.getPersons();
+    return new Gson().toJson(list);
+
+  }
+
+  /**
+   * PUT method for updating or creating an instance of GenericResource
+   *
+   * @param content representation for the resource
+   */
+  @PUT
+  @Consumes(MediaType.APPLICATION_XML)
+  public void putXml(String content)
+  {
+  }
 }

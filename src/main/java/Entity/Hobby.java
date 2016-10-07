@@ -17,8 +17,8 @@ public class Hobby {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String name;
-    String description;
+    @Expose String name;
+    @Expose String description;
     
     @ManyToMany(mappedBy = "hobbies", cascade = 
         CascadeType.PERSIST)

@@ -26,8 +26,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String street;
-    String additionalInfo;
+    @Expose String street;
+    @Expose String additionalInfo;
     
     @ManyToOne(cascade = 
         CascadeType.PERSIST)

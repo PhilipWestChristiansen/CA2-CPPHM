@@ -29,7 +29,7 @@ public class InfoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     
-    String email;
+    @Expose String email;
     
     @OneToMany(cascade = CascadeType.ALL)
     List <Phone> phones;

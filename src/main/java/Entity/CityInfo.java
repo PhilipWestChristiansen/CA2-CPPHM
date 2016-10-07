@@ -21,8 +21,8 @@ import javax.persistence.OneToMany;
 public class CityInfo {
 
     @Id
-    String zip;
-    String city;
+    @Expose String zip;
+    @Expose String city;
 
     public CityInfo() {
     }
