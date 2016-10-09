@@ -8,6 +8,10 @@ package Facade;
 import Entity.Address;
 import Entity.CityInfo;
 import Entity.Person;
+import Test.Populate;
+import static Test.Populate.personTest;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,51 +30,60 @@ import static org.junit.Assert.*;
  */
 public class personFacadeTest
 {
+
     EntityManagerFactory emf;
     personFacade fp;
-    
+
     public personFacadeTest()
     {
         fp = new personFacade();
     }
-    
+
     @BeforeClass
     public static void setUpClass()
     {
     }
-    
+
     @AfterClass
     public static void tearDownClass()
     {
+        Populate pop = new Populate();
+        personTest();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
+        personFacade pf = new personFacade(emf);
+        Gson gson = new GsonBuilder().create();
+        String js = gson.toJson(pf.getPerson(1));
+        System.out.println(js);
+        
     }
-    
+
     @Before
     public void setUp()
     {
         HashMap<String, Object> puproperties = new HashMap<>();
         Persistence.generateSchema("ca2_pu", puproperties);
-        
+
         System.out.println("SetUp");
-        emf = Persistence.createEntityManagerFactory("ca2_pu_test");
+        emf = Persistence.createEntityManagerFactory("ca2_pu");
         fp.setEmf(emf);
-        
+
         System.out.println("DB: " + fp.getPersons().size());
-        
+
         List hobbies = new ArrayList<>();
         List phones = new ArrayList<>();
         CityInfo ci = new Entity.CityInfo("123456", "Putcity");
         Address a = new Entity.Address("Putinstreet", "Putins own street", ci);
         hobbies.add(new Entity.Hobby("President", "kfoe"));
         phones.add(new Entity.Phone(88888888, "Presidents number"));
-        
+
         p = fp.addPerson(new Person("Vlad", "Putin", hobbies, "hey@hey.com", phones, a));
- 
+
         System.out.println("DB: " + fp.getPersons().size());
     }
-    
+
     Person p;
     Person p2;
-    
+
     @After
     public void tearDown()
     {
@@ -78,8 +91,8 @@ public class personFacadeTest
         emf.close();
         HashMap<String, Object> puproperties = new HashMap();
         puproperties.put("javax.persistence.schema-generation.database.action", "drop-and-create");
-        Persistence.generateSchema("ca2_pu_test", puproperties);
-        Persistence.generateSchema("ca2_pu_test", null);
+        Persistence.generateSchema("ca2_pu", puproperties);
+        Persistence.generateSchema("ca2_pu", null);
     }
 
     /**
@@ -119,6 +132,7 @@ public class personFacadeTest
 //    }
 //
 //    
+
     @Test
     public void testAddPerson()
     {
@@ -128,9 +142,9 @@ public class personFacadeTest
         Address a = new Entity.Address("Obamastreet", "Obamas own street", ci);
         hobbies.add(new Entity.Hobby("PresidentOfUS", "kfoe"));
         phones.add(new Entity.Phone(12344321, "Presidents number"));
-        
+
         p2 = fp.addPerson(new Person("Barrack", "Obama", hobbies, "heyyou@hey.com", phones, a));
-        
+
         assertEquals(2, fp.getPersons().size());
     }
 //
