@@ -28,6 +28,7 @@ public class Populate {
     public static void main(String[] args) {
         //cityTest();
         personTest();
+        personTest2();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
         personFacade pf = new personFacade(emf);
         Gson gson = new GsonBuilder().create();
@@ -35,6 +36,7 @@ public class Populate {
         System.out.println(js);
     }
     static CityInfo ci = new CityInfo("2830", "Virum");
+    static CityInfo ci2 = new CityInfo("1463", "København K");
 
     public static void cityTest() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
@@ -63,6 +65,28 @@ public class Populate {
         hobbies.add(hb);
 
         Person p = new Person("Casper", "Lindinger", hobbies, "hey", phones, a);
+        em.persist(p);
+        em.getTransaction().commit();
+
+        em.close();
+        return p;
+    }
+    
+    public static Person personTest2() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        List<Phone> phones = new ArrayList();
+        List<Hobby> hobbies = new ArrayList();
+        Phone ph = new Phone(2324, "bob");
+        Hobby hb = new Hobby("swga", "swag");
+        Address a = new Address("Cedervænget", "Det er et noice sted", ci2);
+
+        phones.add(ph);
+        hobbies.add(hb);
+
+        Person p = new Person("Philip", "swag", hobbies, "swag", phones, a);
         em.persist(p);
         em.getTransaction().commit();
 

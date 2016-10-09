@@ -49,6 +49,7 @@ public class personFacadeTest
     {
         Populate pop = new Populate();
         personTest();
+        pop.personTest2();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ca2_pu");
         personFacade pf = new personFacade(emf);
         Gson gson = new GsonBuilder().create();
